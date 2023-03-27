@@ -2,12 +2,12 @@
 
 Aplikacja tworzona z myślą o właścicielach i pracownikach salonów fryzjerskich, która ułatwia codzienne zarządzanie.
 
-### 🏠 [Strona](https://arkanyfryzjerstwa.projektstudencki.pl/)
+### 🏠 [Strona](https://radjan.bsite.net/)
 
 ## Autorzy
 
-👩 **Katarzyna**
+👩 **Katarzyna(https://www.linkedin.com/in/katarzyna-sajchta/)**
 
 🧑 **Artem**
 
-🧑 **Radosław**
+🧑 **Radosław(https://www.linkedin.com/in/radjankowski/)**
