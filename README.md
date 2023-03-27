@@ -6,8 +6,8 @@ Aplikacja tworzona z myślą o właścicielach i pracownikach salonów fryzjersk
 
 ## Autorzy
 
-👩 **Katarzyna(https://www.linkedin.com/in/katarzyna-sajchta/)**
+👩 **[Katarzyna](https://www.linkedin.com/in/katarzyna-sajchta/)**
 
 🧑 **Artem**
 
-🧑 **Radosław(https://www.linkedin.com/in/radjankowski/)**
+🧑 **[Radosław](https://www.linkedin.com/in/radjankowski/)**
