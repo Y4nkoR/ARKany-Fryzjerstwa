@@ -1,0 +1,45 @@
+﻿@using ARKanyFryzjerstwa.Resources
+@model ARKanyFryzjerstwa.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center account-form-container d-flex justify-content-center align-items-center">
+    <div class="bg-light account-form-box">
+        <div class="form-signin d-flex align-items-center">
+            <form asp-action="Login" asp-controller="Account" method="post" class="w-100">
+
+                <h1 class="h3 mb-3 fw-normal text-dark">Zaloguj się:</h1>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                <div class="form-floating">
+                    <input asp-for="Login" class="form-control my-1" placeholder="Nazwa użytkownika / Email" />
+                    <label for="floatingInput">Nazwa użytkownika / Email: </label>
+                    <span asp-validation-for="Login" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating">
+                    <input asp-for="Password" type="password" class="form-control my-1" placeholder="Hasło" />
+                    <label for="floatingInput">Hasło: </label>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="checkbox my-3">
+                    <div class="custom-control custom-checkbox">
+                        <label asp-for="RememberMe" class="custom-control-label text-dark d-flex align-items-center justify-content-center">
+                            <input asp-for="RememberMe" type="checkbox" class="custom-control-input my-auto" /> Zapamiętaj 
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-100 btn-primary btn-lg btn-primary mb-3">Zaloguj</button>
+                <ul class="btns-pair">
+                    <a href="@Url.Action("PasswordReset", "Account")" class="btn btn-outline-primary">@ARKanyResources.PasswordResetLink</a>
+                    <a href="@Url.Action("RegisterSalon", "Account")" class="btn btn-outline-primary">@ARKanyResources.SalonRegisterLink</a>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>

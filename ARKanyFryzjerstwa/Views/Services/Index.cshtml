@@ -1,0 +1,130 @@
+﻿@using ARKanyFryzjerstwa.Data
+@model ARKanyFryzjerstwa.Models.ServicesModel
+@{
+    ViewData["Title"] = "Usługi";
+    const string serviceIsActiveClass = "service-table-row-active";
+    string rowClass;
+}
+
+<div class="container-fluid bg-light p-3 mt-3">
+    <h3>@ViewData["Title"]</h3>
+    <div id="servicesContentDiv" class="table-responsive">
+        <table id="servicesTable" class="table table-hidden-1 table-sm align-middle px-2 h-min-50">
+            <thead>
+                <th scope="col"></th>
+                <th scope="col" id="servicesTableNamesTh" class="align-middle">Nazwa</th>
+                <th scope="col" id="servicesTableDurationsTh" class="text-center align-middle">Czas trwania</th>
+                <th scope="col" id="servicesTablePricesTh" class="text-center align-middle">Cena</th>
+                <th scope="col" id="servicesTableIsActiveTh" class="text-center align-middle">Aktywna?</th>
+                <th scope="col" id="servicesTableButtonsTh" class="text-center align-middle">Akcje</th>
+            </thead>
+            <tbody>
+                @foreach(var service in Model.Services)
+                {
+                    rowClass = service.IsActive ? serviceIsActiveClass : string.Empty;
+                    
+                    <tr id="service-@service.Id" class="@rowClass">
+                        <td class="service-id">@service.Id</td>
+                        <td class="service-name two-line-ellipsis">@service.Name</td>
+                        <td class="service-duration text-center">@service.Duration</td>
+                        <td class="service-price text-center">@service.Price</td>
+                        @if (service.IsActive == true)
+                            {
+                                <td class="service-isActive text-center">
+                                    <i class="fa-solid fa-check anim-icon table-icons" style="color:green" title="Tak"></i>
+                                </td>
+                            }
+                        else
+                            {
+                                <td class="service-isActive text-center">
+                                    <i class="fa-solid fa-xmark anim-icon table-icons" style="color:red" title="Nie"></i>
+                                </td>                      
+                            }                       
+                        <td class="service-btns text-center">
+                            <i class="fa-solid fa-pen anim-icon table-icons service-edit-btn" title="Edytuj"></i>
+                            <i class="fa-solid fa-floppy-disk anim-icon table-icons service-save-btn" style="display: none" title="Zapisz"></i>
+                            <i class="fa-solid fa-xmark anim-icon table-icons service-cancel-btn" style="display: none" title="Anuluj"></i>
+                            <i class="fa-solid fa-repeat anim-icon table-icons service-change-btn" title="Zmień status"></i>
+                            <i class="fa-solid fa-spray-can-sparkles anim-icon table-icons service-resources-btn" title="Zasoby przypisane do usługi"></i>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="servicesLoadingDiv">
+        <div class="lds-dual-ring"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="serviceModalLabel">Dodaj nową usługę</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating m-2">
+            <input id="formServiceName" class="form-control new-input" maxlength="200" required/>
+            <label for="floatingInput">Nazwa: </label>
+        </div>        
+        <div class="form-floating m-2">
+            <input id="formServiceDuration" class="form-control new-input" required>
+            <label for="floatingInput">Czas trwania: </label>
+        </div>
+        <div class="form-floating m-2">
+            <input id="formServicePrice" type="number" min="0.00" max="9999.99" step="0.01" 
+            class="form-control new-input" required/>
+            <label for="floatingInput">Cena: </label>
+        </div>
+        <div class="form-check m-2">
+            <input id="isServiceActive" class="form-check-input" type="checkbox" value="" checked/>
+            <label class="form-check-label" for="isServiceActive">Aktywna</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="serviceCancelBtn" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" id="serviceAddBtn" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="serviceResourcesPopup">
+    <partial name="_ServiceResourcesPopupPartial.cshtml" />
+</div>
+
+
+@section Scripts {
+    <script src="@Url.Content("~/js/services.js")"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var config = {
+                urls: {
+                    ROOT: '@Url.Content("~")',
+                    addNewService: '@Url.Action("AddNewService", "Services")',
+                    updateService: '@Url.Action("UpdateServiceData", "Services")',
+                    updateServices: '@Url.Action("UpdateServices", "Services")',
+                    getSalonResources: '@Url.Action("GetSalonResources", "Services")',
+                    getServiceResources: '@Url.Action("GetServiceResources", "Services")',
+                    saveServiceResources: '@Url.Action("SaveServiceResources", "Services")'
+                },
+                txts: {
+                    editBtn: "Edytuj",
+                    saveBtn: "Zapisz",
+                    addBtn: "Dodaj usługę",
+                    showLowServicesCheckbox: "Pokaż tylko aktywne usługi",
+                    changeStatusOfSelectedBtn: "Zmień statusy",
+                    deselectAllBtn: "Odznacz wszystko",
+                    selectVisibleBtn: "Zaznacz widoczne"
+                }
+            };
+
+            var services = new Services(config);
+            services.init();
+        });
+    </script>
+}

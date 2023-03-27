@@ -1,0 +1,66 @@
+﻿@using ARKanyFryzjerstwa.Extensions
+@using ARKanyFryzjerstwa.Resources
+
+@{
+    var currentPage = Context.Request.Path;
+    var isSalonOwner = User.IsInRole(Role.SalonOwner);
+}
+
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark border-end border-light" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav sideMenu">
+
+                <a class="sidenav-item d-flex align-items-center ps-3 @MenuHelper.GetTabClassActive(currentPage, "/") @MenuHelper.GetTabClassActive(currentPage, "/Home")" asp-controller="Home" asp-action="Index">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-solid fa-home me-1"></i> Strona główna
+                    </div>
+                </a>
+                <a class="sidenav-item d-flex align-items-center ps-3 @MenuHelper.GetTabClassActive(currentPage, "/Schedule")" asp-controller="Schedule" asp-action="Index">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-solid fa-calendar me-1"></i> Harmonogram
+                    </div>
+                </a>
+                <a class="sidenav-item d-flex align-items-center ps-3 @MenuHelper.GetTabClassActive(currentPage, "/Services")" asp-controller="Services" asp-action="Index">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-solid fa-scissors me-1"></i> Usługi
+                    </div>
+                </a>
+                <a class="sidenav-item d-flex align-items-center ps-3 @MenuHelper.GetTabClassActive(currentPage, "/Resources")" asp-controller="Resources" asp-action="Index">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-solid fa-spray-can-sparkles me-1"></i> Zasoby
+                    </div>
+                </a>
+                <a class="sidenav-item d-flex align-items-center ps-3 @MenuHelper.GetTabClassActive(currentPage, "/Clients")" asp-controller="Clients" asp-action="Index">
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-solid fa-address-book me-1"></i> Klienci
+                    </div>
+                </a>
+                @if(isSalonOwner)
+                {
+                    <a class="sidenav-item d-flex align-items-center ps-3 @MenuHelper.GetTabClassActive(currentPage, "/Settings")" asp-controller="Settings" asp-action="Index">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-solid fa-gear me-1"></i> @ARKanyResources.Salon
+                        </div>
+                    </a>
+                }
+                <a href="@Url.Content("docs/ARKany Fryzjerstwa - instrukcja obsługi.pdf")" target=”_blank” class="sidenav-item d-flex align-items-center ps-3 ">
+                    <div>
+                        <i class="fa-solid fa-file-circle-question me-1"></i> Instrukcja użytkownika
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        
+        <div id="sidenavFooter" class="sb-sidenav-footer  p-0">
+            <div class="m-auto p-2 d-flex align-items-center bg-dark">
+                <button type="button" class="btn btn-primary w-100" id="newAppointmentButton" data-bs-toggle="modal" data-bs-target="#appointmentModal"> Nowa wizyta </button>
+            </div>
+            <div class="m-0 p-3 text-center">
+                <div class="small fw-bold text-light">Zalogowano jako:</div>
+                @User.Identity?.Name
+            </div>
+        </div>
+    </nav>
+</div>

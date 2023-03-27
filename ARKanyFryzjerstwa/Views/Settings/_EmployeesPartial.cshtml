@@ -1,0 +1,85 @@
+﻿@using ARKanyFryzjerstwa.Resources
+
+<div class="container-fluid bg-light p-3 mt-3 rounded">
+    <div>
+        <h3 class="text-center text-xl-start">
+            @ARKanyResources.Employees
+            <button id="addNewEmpBtn" type="button" class="btn btn-primary m-2 btn-md float-right" title="@ARKanyResources.AddEmployeeAccount">
+                <i class="fa solid fa-user-plus"></i>
+            </button>
+        </h3>
+    </div>
+
+    <div id="allEmpsContainer" class="py-3 ">
+    </div>
+
+    <div id="colorPickerContainer" class="section-widow">
+        <div class="header">
+            <span id="colorPickerEmployeeName"></span>
+            <button id="closeColorPickerBtn" class="fa-solid fa-circle-xmark text-danger btn-lg float-right anim-icon p-0" title="Zamknij bez zapisywania zmian"></button>
+        </div>
+        <div class="body">
+            <input id="colorPickerEmpId" hidden />
+            <input id="colorPickerEmpColor" hidden />
+            <div class="row">
+                <div class="col">
+                    <input id="rangeHuePicker" type="range" class="hue-picker" min="0" max="360" step="1" />
+                </div>
+                <div class="col-auto">
+                    <input id="numberHuePicker" type="number" min="0" max="360" />
+                </div>
+            </div>
+            <br />
+            <button id="undoColorbtn" class="btn btn-outline-primary">Cofnij zmiany</button>
+            <button id="saveEmpColorBtn" class="btn btn-primary float-right">Zapisz zmiany</button>
+        </div>
+    </div>
+
+    <div id="allEmpsLoadingPanel" class="lds-dual-ring-section"></div>
+</>
+
+<div id="addEmpPopUp" hidden>
+    <div class="click-disabled"></div>
+    <div class="popup-container">
+        <div class="popup-box">
+            <span class="fa-stack fa-3x popup-icon">
+                <i class="fas fa-circle fa-stack-2x text-success"></i>
+                <i class="fa-solid fa-user-plus fa-stack-1x fa-inverse"></i>
+            </span>
+
+            <p class="popup-text text-secondary">@ARKanyResources.AddEmployeeAccount:</p>
+            <div id="newEmpData" class="popup-inputs">
+                <div class="form-floating my-1">
+                    <input id="newEmpFirstName" class="form-control" placeholder="@ARKanyResources.FirstName" required pattern="^[\p{L}]{3,200}$" maxlength="200"/>
+                    <label for="floatingInput">@ARKanyResources.FirstName: </label>
+                    <i class="input-icon fa-solid fa-circle-info text-muted" title="@ARKanyResources.NameHintText"></i>
+                </div>
+                <div class="form-floating my-1">
+                    <input id="newEmpLastName" class="form-control" placeholder="@ARKanyResources.LastName" required pattern="^[\p{L}]{3,200}$" maxlength="200"/>
+                    <label for="floatingInput">@ARKanyResources.LastName: </label>
+                    <i class="input-icon fa-solid fa-circle-info text-muted" title="@ARKanyResources.NameHintText"></i>
+                </div>
+                <div class="form-floating my-1">
+                    <input id="newEmpEmail" class="form-control" placeholder="@ARKanyResources.Email" type="email" required maxlength="256"/>
+                    <label for="floatingInput">@ARKanyResources.Email: </label>
+                    <i class="input-icon fa-solid fa-circle-info text-muted" title="@ARKanyResources.EmailHintText"></i>
+                </div>
+            </div>
+
+            <ul class="popup-btns">
+                <li id="addEmpCancelBtn" class="btn btn-danger">@ARKanyResources.Cancel</li>
+                <li id="addEmpConfirmBtn" class="btn btn-success">@ARKanyResources.Add</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div id="employeeManagementMenu" class="context-menu">
+    <p id="menuEmployeeName"></p>
+    <input id="menuEmployeeId" type="hidden"/>
+    <input id="menuEmployeeColor" type="hidden"/>
+    <ul>
+            <li id="empColorChangeOpt"><i class="fa-solid fa-droplet context-menu-icon text-info"></i> @ARKanyResources.ChangeColor</li>
+    </ul>
+</div>

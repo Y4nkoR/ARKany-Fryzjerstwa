@@ -1,0 +1,28 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Błąd";
+}
+
+<h1 class="text-danger text-center">Błąd</h1>
+<h2 class="text-danger text-center">Wystąpił błąd w trakcie przetwarzania Twojego żądania.</h2>
+<h2 class="text-danger text-center">Spróbuj ponownie później. Jeśli problem nadal występuje, skontaktuj się z autorami aplikacji.</h2>
+<h2 class="text-center"><a href="mailto:ARKany.fryzjerstwa@outlook.com">ARKany.fryzjerstwa@outlook.com</a></h2>
+
+@if (Model.ShowRequestId)
+{
+    <p class="text-danger text-center">
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+@*<h3>Development Mode</h3>
+<p>
+    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+</p>
+<p>
+    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
+    It can result in displaying sensitive information from exceptions to end users.
+    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
+    and restarting the app.
+</p>
+*@

@@ -1,0 +1,131 @@
+﻿@using ARKanyFryzjerstwa.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+
+@{
+    var isSignedIn = @SignInManager.IsSignedIn(User);
+    var notification = ViewData[Program.NOTIFICATION_KEY] as NotificationModel;
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ARKany Fryzjerstwa</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-sb-admin.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ARKanyFryzjerstwa.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/selectize/dist/css/selectize.bootstrap5.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/flatpickr/flatpickr.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/toastr/dist/css/toastr.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/DataTables/datatables.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark">
+   @if (isSignedIn)
+   {
+         <!--Navbar-->
+        <nav id="topNavbar" class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+            <div class="container-fluid d-flex align-items-center">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ARKany Fryzjerstwa</a>
+
+                <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-md me-lg-0 nav-item" id="sidebarToggle" href="#!">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item d-flex justify-content-center align-items-center">
+                        <form asp-controller="Account" asp-action="Logout" method="post">
+                            <button type="submit" class="nav-link btn btn-link text-light fw-bold">Wyloguj</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <!-- Sidebar -->
+        <div id="layoutSidenav">
+            <partial name="_MenuPartial"/>
+            <div id="layoutSidenav_content">
+                <main role="main" class="pb-2">
+                    <div class="container-fluid px-4">
+                        @RenderBody()
+                        </div>
+                </main>
+            </div>
+        </div>
+   }
+   else
+   {
+        <nav id="topNavbarNotLoggedIn" class="navbar navbar-expand navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ARKany Fryzjerstwa</a>
+
+                <div class="nav-item d-flex justify-content-center align-items-center">
+                    <a class="nav-link text-light d-flex align-items-center" asp-area="" asp-controller="Account" asp-action="Login">Zaloguj się</a>
+                </div>
+            </div>
+        </nav>
+
+        <div id="layoutSidenav_content">
+            <main role="main">
+                <div class="container-fluid p-0">
+                    @RenderBody()
+                    </div>
+            </main>
+        </div>
+   }
+
+    <partial name="_AppointmentPartial"/>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/selectize/dist/js/selectize.min.js"></script>
+    <script src="~/lib/flatpickr/flatpickr.min.js"></script>
+    <script src="~/lib/flatpickr/flatpickr-pl.js"></script>
+    <script src="~/lib/pleaseJS/dist/Please.js"></script>
+    <script src="~/lib/toastr/dist/js/toastr.min.js"></script>
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="~/lib/DataTables/Plugins/row().show().js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/appointment.js" asp-append-version="true"></script>
+
+    @if(notification != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                notify('@Html.Raw(notification.Message)', '@Html.Raw(notification.Type.ToString())', '@Html.Raw(notification.Title)');
+            });
+        </script>
+    }
+
+    @if (isSignedIn) 
+    {
+        <script type="text/javascript">
+            $(function () {
+                var config = {
+                    urls: {
+                        createAppointment: '@Url.Action("CreateAppointment", "Appointment")',
+                        getClientPhoneNumberAndEmail: '@Url.Action("GetClientPhoneNumberAndEmail", "Appointment")',
+                        getAppointmentCreationData: '@Url.Action("GetAppointmentCreationData", "Appointment")',
+                        doAppointmentsOverlap: '@Url.Action("DoAppointmentsOverlap", "Appointment")'
+                    }
+                };
+
+                var appointment = new Appointment(config);
+                appointment.init();
+            });
+        </script>
+    }
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

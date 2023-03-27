@@ -1,0 +1,90 @@
+﻿@model ARKanyFryzjerstwa.Models.RegisterSalonModel
+
+@{
+    ViewData["Title"] = "Rejestracja salonu";
+}
+
+<div class="text-center account-form-container d-flex justify-content-center align-items-center">
+    <div class="bg-light account-form-box">
+        <div class="align-items-center">
+            <form method="post" class="register-salon-form">
+
+                <h1 class="h2 mb-3 fw-normal text-dark">Zarejestruj swój salon</h1>
+
+                @if(Model.HasErrors)
+                {
+                    <div class="identity-errors">
+                        @foreach(var error in Model.IdentityErrors)
+                        {
+                            <li>@error.Description</li>
+                        }
+                    </div>
+                }
+
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-12 col-sm-6">
+                            <h2 class="h3 my-3 fw-normal text-dark">Dane salonu:</h2>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="SalonName" class="form-control" placeholder="Nazwa salonu" />
+                                <label for="floatingInput">Nazwa salonu: </label>
+                                <span asp-validation-for="SalonName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="SalonPhoneNumber" type="tel" class="form-control" placeholder="Nr telefonu do salonu"
+                                pattern="^[0-9]{9}$|^[0-9]{11}$" minlength="9" maxlength="11" 
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
+                                <label for="floatingInput">Nr telefonu do salonu (9 lub 11 cyfr): </label>
+                                <span asp-validation-for="SalonPhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class=" col-12 col-sm-6">
+                            <h2 class="h3 my-3 fw-normal text-dark">Twoje dane:</h2>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="FirstName" class="form-control" placeholder="Imię" />
+                                <label for="floatingInput">Imię: </label>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="LastName" class="form-control" placeholder="Nazwisko" />
+                                <label for="floatingInput">Nazwisko: </label>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="UserName" class="form-control" placeholder="Nazwa użytkownika" />
+                                <label for="floatingInput">Nazwa użytkownika: </label>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                                <label for="floatingInput">Email: </label>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Hasło"/>
+                                <label for="floatingInput">Hasło: </label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating my-1">
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Powtórz hasło" />
+                                <label for="floatingInput">Powtórz hasło: </label>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary btn-lg btn-primary m-3">Zarejestruj salon</button>
+            </form>
+        </div>
+    </div>
+</div>

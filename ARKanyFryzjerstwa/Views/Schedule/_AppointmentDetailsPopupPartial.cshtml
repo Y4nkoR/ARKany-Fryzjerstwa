@@ -1,0 +1,93 @@
+﻿<div class="click-disabled"></div>
+<div class="popup-container">
+
+    <div id="appointmentDetailsPopupBox" class="popup-box">
+        <span class="fa-stack fa-3x popup-icon">
+            <i class="fas fa-circle fa-stack-2x text-warning"></i>
+            <i class="fa-solid fa-calendar-week fa-stack-1x fa-inverse"></i>
+        </span>
+
+        <p class="question text-secondary">Szczegóły wizyty</p>
+        <div class="row justify-content-center" id="appointmentDetailsContent">
+            <div id="appointmentDetailsResourceTableDiv" class="col-12 col-md-7 justify-content-center overflow-auto">
+                <table id="appointmentDetailsResourceTable" class="table table-responsive table-hidden-1 text-center align-middle">
+                    <thead>
+                        <th></th>
+                        <th>Zasób</th>
+                        <th>Potrzebne</th>
+                        <th class="col-3">Stan</th>
+                        <th>Jedn.</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 d-md-none">
+                <hr />
+            </div>
+            <div class="col-12 col-md-5 d-flex justify-content-center align-items-center">
+                <input id="appointmentDetailsId" type="hidden" />
+                <table class="confirm-data schedule-popup-table">
+                    <tr>
+                        <td>
+                            <label> Data: </label>
+                        </td>
+                        <td id="appointmentDetailsDate"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Czas: </label>
+                        </td>
+                        <td id="appointmentDetailsTime"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Klient: </label>
+                        </td>
+                        <td id="appointmentDetailsClient"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Pracownik: </label>
+                        </td>
+                        <td id="appointmentDetailsEmployee"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Usługa: </label>
+                        </td>
+                        <td id="appointmentDetailsService"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Cena: </label>
+                        </td>
+                        <td id="appointmentDetailsStandardPrice"></td>
+                    </tr>
+                    <tr hidden>
+                        <td>
+                            <label> Rabat: </label>
+                        </td>
+                        <td id="appointmentDetailsDiscount"></td>
+                    </tr>
+                    <tr hidden>
+                        <td>
+                            <label> Zapłacono: </label>
+                        </td>
+                        <td id="appointmentDetailsFinalPrice"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="appointmentDetailsLoadingDiv" class="loading-div">
+            <div class="lds-dual-ring"></div>
+        </div>
+
+        <hr/>
+
+        <ul class="popup-btns">
+            <li class="btn close-btn btn-secondary">Zamknij</li>
+        </ul>
+    </div>
+
+</div>

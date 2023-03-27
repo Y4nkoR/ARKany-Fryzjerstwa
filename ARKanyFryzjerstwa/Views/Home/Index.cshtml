@@ -1,0 +1,347 @@
+﻿@using ARKanyFryzjerstwa.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+
+@{
+    var isSignedIn = @SignInManager.IsSignedIn(User);
+    ViewData["Title"] = "Strona główna";
+}
+@if (isSignedIn)
+{
+    <div class="container-fluid mt-3 d-flex justify-content-center">
+        <div class="row">
+            <div class="col-12 rounded bg-light p-2 mb-3 d-flex justify-content-center">
+                <h2> Witaj @ViewData["UserFirstName"]! </h2>
+            </div>
+            <div class="col-12">
+                <div class="row">
+
+                    <div class="col-12 col-xl rounded bg-light p-2 mb-3 d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="text-center"> Twój aktualny tydzień </h3>
+                            </div>
+                            <div class="col-12">
+                                <div class="stats-content-div">
+                                    <div class="row d-flex justify-content-center">
+
+                                        <div class="col-4 bg-planned-appointments text-light p-2 m-3 stats-box">
+                                            <a class="text-light" href="@Url.Action("Index", "Schedule")">
+                                                <div class="row d-flex justify-content-center h-100">
+                                                    <div class="col-12 d-flex justify-content-center text-center header">
+                                                        <h5 class="card-header">Planowanych wizyt</h5>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <h2 id="currentUserPlannedAppointmentsHeader">0</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="col-4 bg-served-client text-light p-2 m-3 stats-box">
+                                            <a class="text-light" href="@Url.Action("Index", "Schedule")">
+                                                <div class="row d-flex justify-content-center h-100">
+                                                    <div class="col-12 d-flex justify-content-center text-center header">
+                                                        <h5 class="card-header">Obsłużonych klientów</h5>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <h2 id="currentUserServedClientsHeader">0</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-4 bg-new-client text-light p-2 m-3 stats-box">
+                                            <a class="text-light" href="@Url.Action("Index", "Schedule")">
+                                                <div class="row d-flex justify-content-center h-100">
+                                                    <div class="col-12 d-flex justify-content-center text-center header">
+                                                        <h5 class="card-header"> Nowych klientów </h5>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <h2 id="currentUserNewClientsHeader">0</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="homepage-stats-loading-div">
+                                    <div class="lds-dual-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xl rounded bg-light p-2 mb-3 ms-xl-3 d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="text-center"> Aktualny tydzień w salonie </h3>
+                            </div>
+                            <div class="col-12">
+                                <div class="stats-content-div">
+                                    <div class="row d-flex justify-content-center">
+
+                                        <div class="col-6 bg-planned-appointments text-light p-2 m-3 stats-box">
+                                            <a class="text-light" href="@Url.Action("Index", "Schedule")">
+                                                <div class="row d-flex justify-content-center h-100">
+                                                    <div class="col-12 d-flex justify-content-center text-center header">
+                                                        <h5 class="card-header">Planowanych wizyt</h5>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <h2 id="overallPlannedAppointmentsHeader">0</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-4 bg-served-client text-light p-2 m-3 stats-box">
+                                            <a class="text-light" href="@Url.Action("Index", "Schedule")">
+                                                <div class="row d-flex justify-content-center h-100">
+                                                    <div class="col-12 d-flex justify-content-center text-center header">
+                                                        <h5 class="card-header">Obsłużonych klientów</h5>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <h2 id="overallServedClientsHeader">0</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-4 bg-new-client text-light p-2 m-3 stats-box">
+                                            <a class="text-light" href="@Url.Action("Index", "Schedule")">
+                                                <div class="row d-flex justify-content-center h-100">
+                                                    <div class="col-12 d-flex justify-content-center text-center header">
+                                                        <h5 class="card-header"> Nowych klientów </h5>
+                                                    </div>
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <h2 id="overallNewClientsHeader">0</h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="homepage-stats-loading-div">
+                                    <div class="lds-dual-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-xl rounded bg-light p-2 mb-3 d-flex justify-content-center">
+                <div class="row w-100">
+                    <div class="col-12">
+                        <h3 class="text-center"> Kończące się zasoby </h3>
+                    </div>
+                    <div class="col-12">
+                        <div id="resourceTableContentDiv">
+                            <table id="homepageResourcesTable" class="table table-responsive align-middle text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-start"> Zasób </th>
+                                        <th class="col-2"> Liczba </th>
+                                        <th class="col-3"> Stan krytyczny </th>
+                                        <th class="col-2"> Jednostka </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="resourceTableLoadingDiv">
+                            <div class="lds-dual-ring"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl rounded bg-light p-2 mb-3 ms-xl-3 justify-content-center">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="text-center"> Notatka </h3>
+                    </div>
+                    <div class="col-12 text-center pt-1">
+                        <div id="noteLoadingDiv">
+                            <div class="lds-dual-ring"></div>
+                        </div>
+                        <textarea id="userNote" class="sticky-note" maxlength="4000"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+} else
+{
+     <div class="container-fluid w-100 m-0 p-0 home-page">
+        <div class="row w-100 p-0 m-0">
+
+            <!-- Title -->
+            <div id="homepageLogoDiv" class="col-12 d-flex align-items-center justify-content-center text-light">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="logoText"> 
+                            ARKany Fryzjerstwa 
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="divider-custom divider-light">
+                            <div class="divider-custom-line"></div>
+                            <div class="divider-custom-icon"><i class="fa-solid fa-scissors"></i></div>
+                            <div class="divider-custom-line"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <a href='@Url.Action("RegisterSalon", "Account")' class="btn btn-outline-light register-salon-button">Zarejestruj swój salon</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About app -->
+            <div class="col-12 bg-light d-flex justify-content-center py-5 about-item">
+                <div class="row w-100 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-10 col-lg-6 px-3">
+                        <h3 class="text-center text-lg-start"> Czym są ARKany Fryzjerstwa? </h3>
+                        <hr class="my-2 mx-auto mx-lg-0">
+                        <p class="text-center text-lg-start">
+                            ARKany Fryzjerstwa to aplikacja stworzona w&nbsp;ramach projektu inżynierskiego. Jej głównym celem jest ułatwienie zarządzania salonem fryzjerskim. 
+                            <br>
+                            <br>
+                            Dzięki niej, codzienne kierowanie Twoim biznesem staje się dużo prostsze!
+                        </p>
+                    </div>
+                    <div class="d-none d-md-block col-6 pt-3 pt-lg-0 col-lg-6 col-xl-5 px-2 d-flex justify-content-center align-items-center">
+                        <img class="img-fluid img-about" src="@Url.Content("~/images/homePage.jpg")">
+                    </div>
+                </div>
+            </div>
+
+            <!-- About schedule -->
+            <div id="aboutSchedule" class="col-12 d-flex text-light justify-content-center py-5 about-item">
+                <div class="row w-100 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-10 col-lg-8 px-3 text-center">
+                        <h3> Harmonogram </h3>
+                        <hr class="border my-2 mx-auto">
+                        <p class="text-center"> 
+                            Harmonogram pozwala na planowanie i&nbsp;śledzenie wizyt klientów.
+                            <br>
+                            <br>
+                            Już nie zapomnisz o&nbsp;kliencie zapisanym nie w&nbsp;tym notesie! 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About services -->
+            <div class="col-12 bg-light d-flex justify-content-center py-5 about-item">
+                <div class="row w-100 d-flex justify-content-center align-items-center">
+                    <div class="d-none order-2 order-lg-1 d-md-block col-6 pt-3 pt-lg-0 col-lg-5 col-xl-4 px-3 d-flex justify-content-center align-items-center">
+                        <img class="img-fluid img-about" src="@Url.Content("~/images/services.jpg")">
+                    </div>
+                    <div class="order-1 order-lg-2 col-12 col-md-10 col-lg-6 px-3">
+                        <h3 class="text-center text-lg-start"> Panel usług </h3>
+                        <hr class="my-2 mx-auto mx-lg-0">
+                        <p class="text-center text-lg-start"> 
+                            W&nbsp;panelu usług dostosujesz oferowane przez Ciebie zabiegi.
+                            Od ceny przez czas trwania do potrzebnych kosmetyków!
+                            <br>
+                            <br>
+                            Tworząc nową wizytę możesz wybrać dodane usługi, a&nbsp;czas trwania zostanie automatycznie wczytany z&nbsp;bazy danych!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About resources -->
+            <div id="aboutResources" class="col-12 d-flex text-light justify-content-center py-5 about-item">
+                <div class="row w-100 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-10 col-lg-8 px-3 text-center">
+                        <h3> Panel zasobów </h3>
+                        <hr class="border my-2 mx-auto">
+                        <p class="text-center"> 
+                            Dzięki panelowi zasobów możesz kontrolować stan magazynowy kosmetyków (i&nbsp;nie tylko) w&nbsp;Twoim salonie.
+                            <br>
+                            <br>
+                            Dzięki naszemu systemowi, po zakończeniu wizyty, liczebność zasobów zostanie pomniejszona o&nbsp;zużytą liczbę!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About clients -->
+            <div class="col-12 bg-light d-flex justify-content-center py-5 about-item">
+                <div class="row w-100 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-10 col-lg-6 px-3">
+                        <h3 class="text-center text-lg-start"> Panel klientów </h3>
+                        <hr class="my-2 mx-auto mx-lg-0">
+                        <p class="text-center text-lg-start"> 
+                            To tutaj zapisywani są Twoi klienci.
+                            W&nbsp;prosty sposób możesz wyszukać dowolną osobę, która odwiedziła Twój salon.
+                            <br>
+                            <br>
+                            Znajdziesz tu również dane kontaktowe, dzięki którym skontaktujesz się z&nbsp;klientem w&nbsp;razie potrzeby!
+                        </p>
+                    </div>
+                    <div class="d-none d-md-block col-6 pt-3 pt-lg-0 col-lg-6 col-xl-5 px-2 d-flex justify-content-center align-items-center">
+                        <img class="img-fluid img-about" src="@Url.Content("~/images/clients.jpg")">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom register -->
+            <div id="bottomSummary" class="col-12 d-flex align-items-center justify-content-center text-light">
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center justify-content-center text-light">
+                        <h2 class="text-center"> 
+                            Zacznij korzystać z&nbsp;platformy ARKany Fryzjerstwa
+                        </h2>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center pt-4">
+                        <div class="row w-100 d-flex align-items-center justify-content-center">
+                            <div id="summaryArrowLeft" class="col-1 d-none d-sm-flex align-items-center justify-content-center">
+                                <h2><i class="fa-solid fa-arrow-right"></i></h2>
+                            </div>
+                            <div class="col-9 col-sm-7 col-md-5 col-lg-4 d-flex align-items-center justify-content-center">
+                                <a id="bottomRegisterSalonBtn" href='@Url.Action("RegisterSalon", "Account")' class="btn btn-outline-light register-salon-button">Zarejestruj swój salon</a>
+                            </div>
+                            <div id="summaryArrowRight" class="col-1 d-none d-sm-flex align-items-center justify-content-center">
+                                <h2><i class="fa-solid fa-arrow-left"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="homepageFooter" class="bg-primary text-center d-flex justify-content-center align-items-center text-light">
+        <div>
+            Made with <i class="fa-solid fa-heart"></i> by ARKany. 2022 - @DateTime.Now.Year.ToString(). 
+            <a href="@Url.Content("docs/ARKany Fryzjerstwa - instrukcja obsługi.pdf")" title="Instrukcja użytkownika" target=”_blank” class="mx-3">
+                <i class="fa-solid fa-file-circle-question text-white"></i>
+            </a>
+        </div>
+    </div>
+
+    
+}
+
+@section Scripts {
+    <script src="@Url.Content("~/js/homepage.js")"></script>
+    <script type="text/javascript">
+        $(function() {
+            var config = {
+                isSignedIn: @isSignedIn.ToString().ToLower(),
+                urls: {
+                    getStats: '@Url.Action("GetStats", "Home")',
+                    getLowResources: '@Url.Action("GetLowResources", "Home")',
+                    getNote: '@Url.Action("GetUserNote", "Home")',
+                    saveNote: '@Url.Action("SaveUserNote", "Home")'
+                }
+            };
+
+            var homepage = new Homepage(config);
+            homepage.init();
+        });
+    </script>
+}

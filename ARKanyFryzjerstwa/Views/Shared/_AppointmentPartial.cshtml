@@ -1,0 +1,111 @@
+﻿@using ARKanyFryzjerstwa.Resources
+<div class="modal fade" id="appointmentModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="appointmentModalLabel">Dodaj nową wizytę</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="newAppointmentContentDiv">
+                    <div class="container">
+                        <div id="appointmentClientData">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label" for="appointmentClientList">Klient</label>
+                                    <select class="form-control" id="appointmentClientList" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label" for="appointmentClientPhoneNumber">Numer telefonu</label>
+                                    <input type="tel" pattern="^[0-9]{9}$|^[0-9]{11}$" title="Wymagane 9 lub 11 cyfr." maxlength=11 class="form-control" id="appointmentClientPhoneNumber"> @*//TODO: użyć resources przy title*@
+                                </div>
+                                <div class="col">
+                                    <label class="form-label" for="appointmentClientEmail">Email</label>
+                                    <input type="email" class="form-control" id="appointmentClientEmail" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div>
+                                <div class="form-check">
+                                    <input id="appointmentAnonymousClient" class="form-check-input" type="checkbox">
+                                    <label for="appointmentAnonymousClient" class="form-check-label">@ARKanyResources.AnonymousClientName</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" for="appointmentDate">Data</label>
+                                <input class="form-control bg-transparent" id="appointmentDate" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" for="appointmentStartTime">Godzina rozpoczęcia</label>
+                                <input class="form-control bg-transparent" id="appointmentStartTime" required>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="appointmentEndTime">Godzina zakończenia</label>
+                                <input class="form-control bg-transparent" id="appointmentEndTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" for="appointmentServiceList">Usługa</label>
+                                <select class="form-control" id="appointmentServiceList" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label" for="appointmentEmployeeSelect">Pracownik</label>
+                                <select class="form-control" id="appointmentEmployeeSelect" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row text-danger text-center">
+                            <span id="appointmentError" style="white-space: pre-wrap"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="newAppointmentLoadingDiv">
+                    <div class="lds-dual-ring"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="appointmentCancelBtn" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-primary disabled" id="appointmentSubmitBtn">Zapisz</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div id="overlapConfirmPopUp" hidden>
+    <div class="click-disabled"></div>
+    <div class="popup-container">
+        <div class="popup-box">
+                <span class="fa-stack fa-3x popup-icon">
+                <i class="fas fa-circle fa-stack-2x text-warning"></i>
+                <i class="fa-solid fa-exclamation fa-stack-1x fa-inverse"></i>
+            </span>
+
+            <p id="popupText" class="question text-secondary">Konflikt wizyt</p>
+            <p class="text-center">
+                Wybrany pracownik posiada już umówioną wizytę w&nbsppodanym czasie.
+            </p>
+            <p class="text-center">
+                Czy chcesz kontynuować?
+            </p>
+            <hr/>
+
+            <ul class="popup-btns">
+                <li class="btn no-btn btn-secondary">Nie</li>
+                <li class="btn yes-btn btn-danger">Tak</li>
+            </ul>
+        </div>
+    </div>
+</div>

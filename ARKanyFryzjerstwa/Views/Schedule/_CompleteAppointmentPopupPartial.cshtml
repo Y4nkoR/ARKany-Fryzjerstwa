@@ -1,0 +1,145 @@
+﻿<div class="click-disabled"></div>
+<div class="popup-container">
+
+    <div id="completeAppointmentPopupBox" class="popup-box">
+        <span class="fa-stack fa-3x popup-icon">
+            <i class="fas fa-circle fa-stack-2x text-success"></i>
+            <i class="fa-solid fa-calendar-check fa-stack-1x fa-inverse"></i>
+        </span>
+
+        <p class="question text-secondary">Podsumowanie wizyty</p>
+        <div class="row" id="completeAppointmentContent">
+            <div id="completeAppointmentResourceTableDiv" class="col-12 col-md-7 d-flex justify-content-center overflow-auto">
+                <table id="completeAppointmentResourceTable" class="table table-hidden-1 text-center align-middle">
+                    <thead>
+                        <th></th>
+                        <th>Zasób</th>
+                        <th>Użyto</th>
+                        <th class="col-3">Stan</th>
+                        <th>Jedn.</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td colspan="4">
+                                <button id="completeAppointmentResourceTableAddButton" class="btn btn-primary btn-sm"> Dodaj użyty zasób </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="col-12 d-md-none">
+                <hr />
+            </div>
+            <div class="col-12 col-md-5 m-auto">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-12 d-flex justify-content-center align-items-center">
+                        <input id="completeAppointmentId" type="hidden" />
+                        <table class="confirm-data schedule-popup-table">
+                            <tr>
+                                <td>
+                                    <label> Data: </label>
+                                </td>
+                                <td id="completeAppointmentDate"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Czas: </label>
+                                </td>
+                                <td id="completeAppointmentTime"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Klient: </label>
+                                </td>
+                                <td id="completeAppointmentClient"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Pracownik: </label>
+                                </td>
+                                <td id="completeAppointmentEmployee"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label> Usługa: </label>
+                                </td>
+                                <td id="completeAppointmentService"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <div class="col-12 col-sm-6 col-md-12 mt-3 mt-sm-0 mt-md-3 d-flex justify-content-center align-items-center">
+                        <table class="confirm-data schedule-popup-table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label>Cena: </label>
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input id="completeAppointmentStandardPrice" type="number" min="0.00" max="9999.99" step="0.01" class="form-control" disabled/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">zł</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan=2>
+                                        <label>Rabat: </label>
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input id="completeAppointmentDiscountPercent" type="number" min="0" max="100" value="0" class="form-control" required/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <input id="completeAppointmentDiscountAmount" type="number" min="0.00" max="9999.99" step="0.01" value="0.00" class="form-control" required/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">zł</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Do zapłaty: </label>
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input id="completeAppointmentFinalPrice" type="number" min="0.00" max="9999.99" step="0.01" class="form-control" required/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">zł</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id="completeAppointmentLoadingDiv" class="loading-div">
+            <div class="lds-dual-ring"></div>
+        </div>
+        
+        <hr/>
+
+        <ul class="popup-btns">
+            <li class="btn cancel-btn btn-secondary">Anuluj</li>
+            <li class="btn complete-btn btn-success">Zakończ</li>
+        </ul>
+    </div>
+
+</div>

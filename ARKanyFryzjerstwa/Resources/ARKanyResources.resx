@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="AddEmployeeAccount" xml:space="preserve">
+    <value>Dodaj konto pracownika</value>
+  </data>
+  <data name="AddingEmployeeSuccessMsg" xml:space="preserve">
+    <value>Pomyślnie utworzono konto dla pracownika.</value>
+    <comment>Powiadomienie o pomyślnym utworzeniu konta pracownika.</comment>
+  </data>
+  <data name="AnonymousClientName" xml:space="preserve">
+    <value>Klient anonimowy</value>
+    <comment>Wyświetlana nazwa dla klienta anonimowego</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="ChangeColor" xml:space="preserve">
+    <value>Zmień kolor</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Zmień hasło</value>
+  </data>
+  <data name="ChangingPasswordErrorMsg" xml:space="preserve">
+    <value>Zmiana hasła zakończyła się niepowodzeniem. Upewnij się, że poprawnie wprowadziłeś dane.</value>
+    <comment>Wiadomość o nieudanej zmianie hasła.</comment>
+  </data>
+  <data name="ChangingPasswordSuccessMsg" xml:space="preserve">
+    <value>Zmiana hasła zakończona sukcesem.</value>
+    <comment>Wiadomość o pomyślnej zmianie hasła</comment>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Powtórz nowe hasło</value>
+  </data>
+  <data name="CreationEmployeeAccountMailBody" xml:space="preserve">
+    <value>&lt;h3&gt;Witaj {0} {1}!&lt;/h3&gt;
+&lt;p&gt;W aplikacji &lt;a href="{2}"&gt;ARKany Fryzjerstwa&lt;/a&gt; zostało utworzone dla Ciebie konto. &lt;/p&gt;
+&lt;p&gt;Twoje dane:&lt;/p&gt;
+&lt;div style="width: fit-content;border-radius: 10px;background-color: #ddd;margin:5px auto;padding:15px;font-size: 18px;"&gt;
+&lt;b&gt;Email:&lt;/b&gt; {3}&lt;br&gt;
+&lt;b&gt;Login:&lt;/b&gt; {4}
+&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;Aby ustawić hasło i móc korzystać z konta należy przejść proces zresetowania hasła dostępny pod adresem &lt;a href="{5}"&gt;{5}&lt;/a&gt;.&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;W razie problemów pozostajemy do dyspozycji.&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;Pozdrawiamy&lt;/p&gt;
+&lt;p&gt;Zespół ARKany Fryzjerstwa&lt;/p&gt;
+&lt;p&gt;&lt;a href="mailto:ARKany.fryzjerstwa@outlook.com"&gt;ARKany.fryzjerstwa@outlook.com&lt;/a&gt;&lt;/p&gt;</value>
+    <comment>Treść maila o utworzeniu konta pracownika
+0 - Imię, 1 - Nazwisko, 2- link do aplikacji, 3 - mail, 4 - login, 5 - link do resetu hasła w aplikacji</comment>
+  </data>
+  <data name="CreationEmployeeAccountMailSubject" xml:space="preserve">
+    <value>ARKany Fryzjerstwa - Nowe konto</value>
+    <comment>Tytuł maila o utworzeniu konta pracownika</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailHintText" xml:space="preserve">
+    <value>• Pole wymagane
+• Format adresu email</value>
+    <comment>Tekst wskazówki do pola wprowadzania maila</comment>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>Pracownicy</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Błąd</value>
+    <comment>Domyślny tytuł powiadomienia o typie error</comment>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Imię</value>
+  </data>
+  <data name="GetAllEmployeesErrorMsg" xml:space="preserve">
+    <value>Nie udało się poprawnie załadować listy wszystkich pracowników.</value>
+    <comment>Wiadomość błędu o niepoprawnym pobraniu listy pracowników.</comment>
+  </data>
+  <data name="IncompleteDataWarningMsg" xml:space="preserve">
+    <value>Uzupełnij wymagane dane.</value>
+    <comment>Wiadomość ostrzeżenia o niewypełnionych danych</comment>
+  </data>
+  <data name="InfoTitle" xml:space="preserve">
+    <value>Informacja</value>
+    <comment>Domyślny tytuł powiadomienia o typie info</comment>
+  </data>
+  <data name="InvalidFormErrorMsg" xml:space="preserve">
+    <value>Uzupełnij poprawnie dane.</value>
+    <comment>Powiadomienie w przypadku nieporawnych danych formularza.</comment>
+  </data>
+  <data name="InvalidVerificationCodeErrorDescription" xml:space="preserve">
+    <value>Niepoprawny kod weryfikacyjny.</value>
+    <comment>Opis błędu dla niepoprawnego kodu weryfikacyjngo</comment>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nazwisko</value>
+  </data>
+  <data name="LoginInputLabel" xml:space="preserve">
+    <value>Nazwa użytkownika / Email</value>
+    <comment>Tekst nazwy pola wprowadzenia loginu</comment>
+  </data>
+  <data name="NameHintText" xml:space="preserve">
+    <value>• Pole wymagane
+• Min. 3 znaki
+• Może zawierać tylko litery</value>
+    <comment>Tekst wskazówki do pola wprowadzania tekstu</comment>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nowe hasło</value>
+  </data>
+  <data name="NoPerrmisionErrorMessage" xml:space="preserve">
+    <value>Odmowa dostępu. Nie posiadasz odpowiednich uprawnień.</value>
+    <comment>Wiadomość błędu gdy użytkownik nie ma odpowiednich uprawnień</comment>
+  </data>
+  <data name="PasswordResetLink" xml:space="preserve">
+    <value>Nie pamiętasz hasła?</value>
+    <comment>Treść przycisku do zmiany hasła na stronie logowania</comment>
+  </data>
+  <data name="ResetPasswordVerificationCodeMailBody" xml:space="preserve">
+    <value>&lt;h3&gt;Witaj {0} {1}!&lt;/h3&gt;
+&lt;p&gt;Otrzymaliśmy prośbę o zresetowanie hasła do Twojego konta w aplikacji ARKany Fryzjerstwa. &lt;/p&gt;
+&lt;p&gt;Twój kod weryfikacyjny to:&lt;/p&gt;
+&lt;div style="width: fit-content;text-align: center;letter-spacing: 5px;border-radius: 40px;background-color: #ddd;margin:5px auto;padding:15px;font-size: 26px;"&gt;
+&lt;span&gt;&lt;b&gt;{2}&lt;/b&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;Kod jest ważny do {3}.&lt;/p&gt;
+&lt;p&gt;Hasło zresetujesz pod adresem &lt;a href="{4}"&gt;{4}&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;W razie problemów pozostajemy do dyspozycji.&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;Pozdrawiamy&lt;/p&gt;
+&lt;p&gt;Zespół ARKany Fryzjerstwa&lt;/p&gt;
+&lt;p&gt;&lt;a href="mailto:ARKany.fryzjerstwa@outlook.com"&gt;ARKany.fryzjerstwa@outlook.com&lt;/a&gt;&lt;/p&gt;</value>
+    <comment>Treść maila z kodem weryfikacyjnym do resetu hasła
+0 - imię, 1 - nazwisko, 2 - kod, 3 - data ważności kodu, 4 - url</comment>
+  </data>
+  <data name="ResetPasswordVerificationCodeMailSubject" xml:space="preserve">
+    <value>ARKany Fryzjerstwa - kod weryfkacyjny</value>
+    <comment>Tytuł maila z kodem weryfikacyjnym do resetu hasła</comment>
+  </data>
+  <data name="Salon" xml:space="preserve">
+    <value>Salon</value>
+  </data>
+  <data name="SalonRegisterErrorMsg" xml:space="preserve">
+    <value>Nie udało się zarejestrować salonu. Upewnij się, że poprawnie wypełniłeś formularz i spróbuj ponownie.</value>
+    <comment>Powiadomienie po nieudanej rejestracji salonu.</comment>
+  </data>
+  <data name="SalonRegisterLink" xml:space="preserve">
+    <value>Zarejestruj swój salon</value>
+    <comment>Treść przycisku do rejestracji salonu na stronie logowania</comment>
+  </data>
+  <data name="SalonRegisterSuccessMsg" xml:space="preserve">
+    <value>Pomyślnie zarejestrowano salon. Zaloguj się używając podanego adresu e-mail i hasła.</value>
+    <comment>Powiadomienie po pomyślnie zakończonej rejestracji salonu.</comment>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="SavingEmployeeColorErrorMsg" xml:space="preserve">
+    <value>Nie udało się zaaktualizować się koloru pracownika.</value>
+    <comment>Wiadomość o błędzie przy zapisywaniu koloru pracownika</comment>
+  </data>
+  <data name="SavingEmployeeColorSuccessMsg" xml:space="preserve">
+    <value>Kolor pracownika został pomyślnie zaaktualizowany</value>
+    <comment>Wiadomość o pomyślnym zapisaniu koloru pracownika</comment>
+  </data>
+  <data name="ServiceResourcesAssigmentSelectInfo" xml:space="preserve">
+    <value>Wybierz zasób, który chcesz przypisać do usługi.
+Zostanie on dodany do listy poniżej.</value>
+    <comment>Informacja dotycząca pola wyboru zasobu w oknie przypisywania zasobów do usługi.</comment>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Sukces</value>
+    <comment>Domyślny tytuł powiadomienia o typie success</comment>
+  </data>
+  <data name="UnknowErrorMsg" xml:space="preserve">
+    <value>Wystąpił nieznany błąd.</value>
+    <comment>Wiadomość dla nieznanego błędu.</comment>
+  </data>
+  <data name="UserNotFoundErrorMsg" xml:space="preserve">
+    <value>Nie znaleziono użytkownika o podanych danych.</value>
+    <comment>Wiadomość błędu, gdy użytkownik nie zostanie znaleziony</comment>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Kod weryfikacyjny</value>
+  </data>
+  <data name="VerificationCodeInfo" xml:space="preserve">
+    <value>Do zmiany hasła wymagane jest podanie kodu weryfikacyjnego wysłanego na adres e-mail.</value>
+    <comment>Informacja dotycząca kodu weryfikacyjnego do zmiany hasła.</comment>
+  </data>
+  <data name="VerificationCodeSendedMsg" xml:space="preserve">
+    <value>Kod weryfikacyjny został pomyślnie wysłany na adres e-mail powiązany z kontem.</value>
+    <comment>Wiadomość o pomyślnym wysłaniu maila z kodem weryfikacyjnym.</comment>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Ostrzeżenie</value>
+    <comment>Domyślny tytuł powiadomienia o typie warning</comment>
+  </data>
+  <data name="WrongHexColorFormatExceptionMessage" xml:space="preserve">
+    <value>Nieporawny format przekazanego koloru.</value>
+    <comment>Wiadomość dla błędu o niepoprawnym formacie koloru (hex).</comment>
+  </data>
+</root>

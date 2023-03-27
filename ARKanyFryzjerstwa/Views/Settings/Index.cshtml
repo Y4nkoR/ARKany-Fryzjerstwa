@@ -1,0 +1,37 @@
+﻿@using ARKanyFryzjerstwa.Resources
+
+@{
+    ViewData["Title"] = ARKanyResources.Salon;
+}
+
+<div id="salonEmployeesSettingsContainer">
+    <partial name="_EmployeesPartial"/>
+</div>
+
+
+@section Scripts {
+    <script src="@Url.Content("~/js/employees.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var config = {
+                urls: {
+                    getEmployees: '@Url.Action("GetEmployees", "Settings")',
+                    addEmployee: '@Url.Action("AddNewEmployee", "Settings")',
+                    saveEmployeeColor: '@Url.Action("SaveEmployeeColor", "Settings")'
+                },
+                texts: {
+                    invalidFormErrorMsg: '@ARKanyResources.InvalidFormErrorMsg',
+                    unknowErrorMsg: '@ARKanyResources.UnknowErrorMsg',
+                    addingEmployeeSuccessMsg: '@ARKanyResources.AddingEmployeeSuccessMsg',
+                    getAllEmployeesErrorMsg: '@ARKanyResources.GetAllEmployeesErrorMsg',
+                    savingEmployeeColorSuccessMsg: '@ARKanyResources.SavingEmployeeColorSuccessMsg',
+                    savingEmployeeColorErrorMsg: '@ARKanyResources.SavingEmployeeColorErrorMsg'
+                }
+            };
+
+            var employees = new Employees(config);
+            employees.init();
+        });
+    </script>
+}

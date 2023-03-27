@@ -1,0 +1,124 @@
+﻿@using ARKanyFryzjerstwa.Data
+@using EnumsNET
+@model ARKanyFryzjerstwa.Models.ResourcesModel;
+
+@{
+    ViewData["Title"] = "Zasoby";
+    const string resourceCriticalAmountClass = "resource-table-row-warning";
+    string rowClass;
+}
+
+<div class="container-fluid bg-light p-3 mt-3">
+    <h3 class="text-center text-xl-start">@ViewData["Title"]</h3>
+    <div id="resourcesContentDiv" class="table-responsive">
+        <table id="resourcesTable" class="table table-hidden-1 table-sm align-middle px-2 h-min-50">
+            <thead>
+                <th scope="col"></th>
+                <th scope="col" id="resourcesTableNamesTh" class="align-middle">Nazwa</th>
+                <th scope="col" id="resourcesTabelQuantitiesTh" class="text-center align-middle">Liczba</th>
+                <th scope="col" id="resourcesTableAlertQuantityTh" class="text-center align-middle" title="Od jakiej liczby zasobu ostrzegać o niskim stanie.">Stan krytyczny</th>
+                <th scope="col" id="resourcesTableUnitsTh" class="text-center align-middle">Jednostka</th>
+                <th scope="col" id="resourcesTableButtonsTh" class="text-center align-middle">Akcje</th>
+            </thead>
+            <tbody>
+                @foreach(var resource in Model.Resources)
+                {
+                    @if (float.Parse(resource.Quantity) <= float.Parse(resource.AlertQuantity))
+                    {
+                        rowClass = @resourceCriticalAmountClass;
+                    }
+                    else
+                    {
+                        rowClass = "";
+                    }
+                    <tr id="resource-@resource.Id" class="@rowClass">
+                        <td class="resource-id">@resource.Id</td>
+                        <td class="resource-name">@resource.Name</td>
+                        <td class="resource-quantity text-center">@resource.Quantity</td>
+                        <td class="resource-usage text-center">@resource.AlertQuantity</td>
+                        <td class="resource-unit text-center">@resource.Unit.ToString().ToLower()</td>
+                        <td class="resource-btns text-center">
+                            <i class="fa-solid fa-pen anim-icon table-icons resource-edit-btn" title="Edytuj"></i>
+                            <i class="fa-solid fa-floppy-disk anim-icon table-icons resource-save-btn" style="display: none" title="Zapisz"></i>
+                            <i class="fa-solid fa-xmark anim-icon table-icons resource-cancel-btn" style="display: none" title="Anuluj"></i>
+                            <i class="fa-solid fa-trash anim-icon table-icons resource-remove-btn" title="Usuń"></i>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="resourcesLoadingDiv">
+        <div class="lds-dual-ring"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="resourceModal" tabindex="-1" aria-labelledby="resourceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resourceModalLabel">Dodaj nowy zasób</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating m-2">
+            <input id="formResourceName" class="form-control new-input" maxlength="200" required/>
+            <label for="floatingInput">Nazwa: </label>
+        </div>
+        <div class="form-floating m-2">
+            <input id="formResourceQuantity" type="number" min="0.00" max="9999.99" step="0.01" 
+            class="form-control new-input" required/>
+            <label for="floatingInput">Ilość: </label>
+        </div>
+        <div class="form-floating m-2">
+            <select id="formResourceUnit" class="form-control new-input" required>
+                @foreach(ResourceUnit unit in Enum.GetValues(typeof(ResourceUnit)))
+                {
+                    <option value="@((int)unit)">@unit.AsString(EnumFormat.Description)</option>
+                }
+            </select>
+            <label for="floatingInput">Jednostka: </label>
+        </div>
+        <div class="form-floating m-2">
+            <input id="formResourceAlertQuantity" type="number" min="0.00" max="9999.99" step="0.01" 
+            class="form-control new-input" required/>
+            <label for="floatingInput">Stan krytyczny: </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="resourceCancelBtn" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" id="resourceAddBtn" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/resources.js")"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var config = {
+                urls: {
+                    ROOT: '@Url.Content("~")',
+                    addNewResource: '@Url.Action("AddNewResource", "Resources")',
+                    updateResource: '@Url.Action("UpdateResource", "Resources")',
+                    removeResource: '@Url.Action("RemoveResource", "Resources")',
+                    removeResources: '@Url.Action("RemoveResources", "Resources")'
+                },
+                txts: {
+                    editBtn: "Edytuj",
+                    saveBtn: "Zapisz",
+                    addBtn: "Dodaj zasób",
+                    showLowResourcesCheckbox: "Pokaż tylko kończące się zasoby",
+                    removeSelectedBtn: "Usuń zaznaczone",
+                    deselectAllBtn: "Odznacz wszystko",
+                    selectVisibleBtn: "Zaznacz widoczne"
+                }
+            };
+
+            var resources = new Resources(config);
+            resources.init();
+        });
+    </script>
+}

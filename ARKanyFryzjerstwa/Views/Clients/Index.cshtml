@@ -1,0 +1,154 @@
+﻿@using ARKanyFryzjerstwa.Data
+@model ARKanyFryzjerstwa.Models.ClientsModel;
+@{
+    ViewData["Title"] = "Klienci";
+}
+<div class="container-fluid bg-light p-3 mt-3">
+    <h3 class="text-center text-xl-start">@ViewData["Title"]</h3>
+    <div id="clientsContentDiv" class="table-responsive">
+        <table id="clientsTable" class="table table-hidden-1 table-sm align-middle px-2 h-min-80">
+            <thead>
+                <th scope="col"></th>
+                <th scope="col" id="clientsTableFirstNameTh" class="align-middle">Imię</th>
+                <th scope="col" id="clientsTableLastNameTh" class="align-middle">Nazwisko</th>
+                <th scope="col" id="clientsTablePhoneNumberTh" class="align-middle">Numer</th>
+                <th scope="col" id="clientsTableEmailTh" class="align-middle">E-mail</th>
+                <th scope="col" id="clientsTableButtonsTh" class="text-center align-middle">Akcje</th>
+            </thead>
+            <tbody>
+                @foreach(var client in Model.Clients)
+                {
+                    <tr id="client-@client.Id">
+                        <td class="client-id">@client.Id</td>
+                        <td class="client-firstName">@client.FirstName</td>
+                        <td class="client-lastName">@client.LastName</td>
+                        <td class="client-phoneNumber">@client.PhoneNumber</td>
+                        <td class="client-email">@client.Email</td>
+                        <td class="client-btns text-center">
+                            <i class="fa-solid fa-pen anim-icon table-icons client-edit-btn" title="Edytuj"></i>
+                            <i class="fa-solid fa-floppy-disk anim-icon table-icons client-save-btn" style="display: none" title="Zapisz"></i>
+                            <i class="fa-solid fa-xmark anim-icon table-icons client-cancel-btn" style="display: none" title="Anuluj"></i>
+                            <i class="fa-solid fa-trash anim-icon table-icons client-remove-btn" title="Usuń"></i>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="clientsLoadingDiv">
+        <div class="lds-dual-ring"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="clientModalLabel">Dodaj nowego klienta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating m-2">
+            <input id="formClientFirstName" type="text" class="form-control new-input" maxlength="20" required/>
+            <label for="floatingInput">Imie: </label>
+        </div>
+        <div class="form-floating m-2">
+            <input id="formClientLastName" type="text" class="form-control new-input" maxlength="20" required/>
+            <label for="floatingInput">Nazwisko: </label>
+        </div>
+        <div class="form-floating m-2">
+            <input id="formClientPhoneNumber" minlength="9" maxlength="11" 
+            class="form-control new-input" type="tel"
+            pattern="^[0-9]{9}$|^[0-9]{11}$" title="Wymagane 9 lub 11 cyfr."/>
+            <label for="floatingInput">Numer telefonu: </label>
+        </div>
+        <div class="form-floating m-2">
+            <input id="formClientEmail" class="form-control new-input" type="email"/>
+            <label for="floatingInput">Email: </label>
+        </div>
+      </div>
+      <div class="row text-danger text-center">
+        <span id="clientError" style="white-space: pre-wrap"> </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="clientCancelBtn" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <button type="button" id="clientAddBtn" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="removeClientPopup" hidden>
+    <div class="popup-container">
+        <div class="popup-box">
+            <span class="fa-stack fa-3x popup-icon">
+                <i class="fas fa-circle fa-stack-2x text-danger"></i>
+                <i class="fa-solid fa-user-xmark fa-stack-1x fa-inverse"></i>
+            </span>
+            <p id="confirmationTextForMany" class="question text-secondary">Usunąć klienta?</p>
+            <div id="oneClientPopupInfo">
+                <ul class="confirm-data">
+                    <li><label>Imie: </label><div id="confirmClientFirstName" class="confirm-value"></div></li>
+                    <li><label>Nazwisko: </label><div id="confirmClientLastName" class="confirm-value"></div></li>
+                    <li><label>Numer: </label><div id="confirmClientPhoneNumber" class="confirm-value"></div></li>
+                    <li><label>Email: </label><div id="confirmClientEmail" class="confirm-value"></div></li>
+                </ul>
+            </div>
+            <hr/>
+            <ul class="popup-btns">
+                <li id="cancelRemoveOneBtn" class="btn no-btn btn-secondary">Nie</li>
+                <li id="confirmRemoveOneBtn" class="btn yes-btn btn-danger">Tak</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="removeSelectedClientsPopup" hidden>
+    <div class="popup-container">
+        <div class="popup-box">
+            <span class="fa-stack fa-3x popup-icon">
+                <i class="fas fa-circle fa-stack-2x text-danger"></i>
+                <i class="fa-solid fa-user-xmark fa-stack-1x fa-inverse"></i>
+            </span>
+            <p id="confirmationTextForOne" class="question text-secondary">Usunąć wybranych klientów?</p>
+            <div id="selectedNumberPopupInfo">
+                <label>Liczba wybranych klientów: </label><div id="confirmSelectedNumber" class="confirm-value"></div>
+            </div>
+            <hr/>
+            <ul class="popup-btns">
+                <li id="cancelRemoveSelectedBtn" class="btn no-btn btn-secondary">Nie</li>
+                <li id="confirmRemoveSelectedBtn" class="btn yes-btn btn-danger">Tak</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/clients.js")"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var config = {
+                urls: {
+                    ROOT: '@Url.Content("~")',
+                    addNewClient: '@Url.Action("AddNewClient", "Clients")',
+                    updateClient: '@Url.Action("UpdateClient", "Clients")',
+                    removeClient: '@Url.Action("RemoveClient", "Clients")',
+                    removeClients: '@Url.Action("RemoveClients", "Clients")',
+                    duplicateClientVerification: '@Url.Action("DuplicateClientVerification", "Clients")'
+                },
+                txts: {
+                    editBtn: "Edytuj",
+                    saveBtn: "Zapisz",
+                    addBtn: "Dodaj klienta",
+                    removeSelectedBtn: "Usuń zaznaczone",
+                    deselectAllBtn: "Odznacz wszystko",
+                    selectVisibleBtn: "Zaznacz widoczne"
+                }
+            };
+
+            var clients = new Clients(config);
+            clients.init();
+        });
+    </script>
+}

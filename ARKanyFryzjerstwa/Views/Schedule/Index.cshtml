@@ -1,0 +1,91 @@
+﻿@model ARKanyFryzjerstwa.Models.ScheduleModel
+
+@{
+    ViewData["Title"] = "Harmonogram";
+}
+
+<div class="container-fluid bg-light p-3 mt-3">
+    <div class="row d-flex">
+        <div class="col-4 m-auto pb-2 d-flex justify-content-center justify-content-lg-start">
+            <div id="scheduleDatePicker" data-today="@DateTime.Today" class="text-center px-0 mx-0 text-dark flatpicker align-items-center d-flex justify-content-center justify-content-lg-start">
+                <input type="text" data-input hidden />
+                <a class="input-button row" data-toggle>
+                    <div class="col-2">
+                        <h3><i class="fa-regular fa-calendar"></i></h3>
+                    </div>
+                    <div class="col">
+                        <h3 id="scheduleTitle" class="schedule-title"></h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-8 m-auto pb-2 pe-4">
+            <div class="row d-flex justify-content-center">
+                <div id="employeeSelectDiv" class="ms-auto me-0 col">
+                    <select id="employeeSelect" class="schedule-select bg-light text-dark" name="employee-select" multiple>
+                        @foreach (var employee in Model.Employees)
+                        {
+                            <option data-data='{"employeeColor": "@employee.Color"}' value="@employee.Id" selected>@employee.DisplayName</option>
+                        }
+                    </select>
+                </div>
+                <div id="refreshButtonDiv" class="col-12 col-sm-2">
+                    <button id="refreshButton" class="btn btn-primary w-100">
+                        <i class="fa-solid fa-arrows-rotate"></i> Odśwież
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div id="schedule" class="row">
+        <div id="timeIntervals" class="col-auto"></div>
+        <div id="days" class="col"></div>
+        <div id="appointmentMenu" class="context-menu">
+            <p id="appointmentMenuDate"></p>
+            <p id="appointmentMenuTime"></p>
+            <input id="appointmentMenuId" type="hidden" />
+            <ul>
+                <li id="appointmentDetailsOpt"><i class="fa-solid fa-circle-info context-menu-icon text-warning"></i> Szczegóły</li>
+                <li id="cancelAppointmentOpt"><i class="fa-solid fa-circle-xmark context-menu-icon text-danger"></i> Odwołaj</li>
+                <li id="completeAppointmentOpt"><i class="fa-solid fa-circle-check context-menu-icon text-success"></i> Zakończ</li>
+            </ul>
+        </div>
+    </div>
+    <div id="scheduleLoadingDiv">
+        <div class="lds-dual-ring"></div>
+    </div>
+</div>
+
+<div id="cancelAppointmentPopup" hidden>
+    <partial name="_CancelAppointmentConfirmPartial.cshtml"/>
+</div>
+
+<div id="completeAppointmentPopup" hidden>
+    <partial name="_CompleteAppointmentPopupPartial.cshtml"/>
+</div>
+
+<div id="appointmentDetailsPopup" hidden>
+    <partial name="_AppointmentDetailsPopupPartial.cshtml"/>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/schedule.js")"></script>
+    <script type="text/javascript">
+        $(function() {
+            var config = {
+                urls: {
+                    getAppointments: '@Url.Action("GetAppointmentsForWeek","Schedule")',
+                    getServiceData: '@Url.Action("GetAppointmentServiceModel", "Schedule")',
+                    getResources: '@Url.Action("GetAllResources", "Schedule")',
+                    cancelAppointment: '@Url.Action("CancelAppointment", "Schedule")',
+                    completeAppointment: '@Url.Action("CompleteAppointment", "Schedule")'
+                }
+            };
+
+            var schedule = new Schedule(config);
+            schedule.init();
+        });
+    </script>
+}
